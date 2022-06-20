@@ -1,7 +1,7 @@
 name: ai_table_list
 description: Package table list.
 version: 0.0.1-pre-release
-homepage: https://github.com/firmino2611/ai-table-list
+homepage: https://github.com/firmino2611/ai-table
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
