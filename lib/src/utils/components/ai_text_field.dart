@@ -45,7 +45,7 @@ class AITextField extends StatefulWidget {
   final Widget? sufixIcon;
 
   @override
-  _AITextFieldState createState() => _AITextFieldState();
+  State<AITextField> createState() => _AITextFieldState();
 }
 
 class _AITextFieldState extends State<AITextField> {

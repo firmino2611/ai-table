@@ -1,5 +1,4 @@
 import 'package:ai_table_list/src/components/contracts/table_cell_interface.dart';
-import 'package:ai_table_list/src/components/parts/ai_table_cell.dart';
 
 /// Class control row of table
 abstract class TableRowInterface {

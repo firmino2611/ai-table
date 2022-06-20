@@ -2,7 +2,6 @@ import 'package:ai_table_list/src/components/contracts/table_filter.dart';
 import 'package:ai_table_list/src/components/contracts/table_header_interface.dart';
 import 'package:ai_table_list/src/components/contracts/table_row_interface.dart';
 import 'package:ai_table_list/src/utils/components/ai_icon_button.dart';
-import 'package:ai_table_list/src/utils/components/ai_paginate.dart';
 import 'package:ai_table_list/src/utils/components/ai_text_field.dart';
 import 'package:ai_table_list/src/utils/styles/ai_colors.dart';
 import 'package:ai_table_list/src/utils/styles/ai_input_style.dart';

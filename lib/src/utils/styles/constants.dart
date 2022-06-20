@@ -5,12 +5,12 @@ abstract class Constants {
   static boxDecoration({Color? color}) => BoxDecoration(
         color: color ?? AIColors.white,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             blurRadius: 2,
             color: AIColors.grey200,
             spreadRadius: 2,
-            offset: const Offset(0, 2),
+            offset: Offset(0, 2),
           )
         ],
       );
