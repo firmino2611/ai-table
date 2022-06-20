@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
               filterButton: FilterButton(
                 color: Colors.red,
                 icon: Icons.abc,
-                tooltip: 'FIltros',
+                tooltip: 'Filters',
                 visible: true,
                 onClick: () {},
                 // builder: () {
@@ -60,9 +60,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 // },
               ),
               search: AIFilterHeaderSearch(
-                placeholder: 'Pesquisar..',
+                placeholder: 'Search..',
                 onChange: (val) {},
               ),
+              actions: [],
             ),
             header: AITableHeader(
               background: Colors.grey.shade200,
@@ -75,19 +76,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 AITableHeaderCell(
                   child: Text(
-                    'NOME SOCIAL',
+                    'NAME',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 AITableHeaderCell(
                   child: Text(
-                    'SALDO',
+                    'BALANCE',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 AITableHeaderCell(
                   child: Text(
-                    'AÇÕES',
+                    'ACTIONS',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   align: Alignment.centerRight,
@@ -100,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onClick: (index) {},
                 cells: [
                   AITableCell(child: Text('#123')),
-                  AITableCell(child: Text('Lucas')),
+                  AITableCell(child: Text('Mickey')),
                   AITableCell(child: Text('34.039')),
                   AITableCell(
                     align: Alignment.centerRight,

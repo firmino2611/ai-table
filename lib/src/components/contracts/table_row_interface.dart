@@ -7,9 +7,11 @@ abstract class TableRowInterface {
   final List<TableCellInterface> cells;
 
   /// When row clicked
+  /// [index] row clicked
   final Function(int index)? onClick;
 
   /// When row hovered
+  /// [index] row clicked
   final Function(int index)? onHover;
 
   TableRowInterface({
