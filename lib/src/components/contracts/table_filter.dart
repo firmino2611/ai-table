@@ -46,7 +46,7 @@ class FilterButton {
   final Function()? onClick;
 
   /// Background color of button.
-  final Color color;
+  final Color? color;
 
   /// Icon of button default.
   final IconData icon;
@@ -62,7 +62,7 @@ class FilterButton {
   FilterButton({
     this.visible = true,
     this.onClick,
-    this.color = AIColors.white,
+    this.color,
     this.icon = Icons.tune_outlined,
     this.builder,
     this.tooltip,

@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
             filter: AITableFilter(
               filterButton: FilterButton(
                 color: Colors.red,
-                icon: Icons.abc,
+                icon: Icons.filter,
                 tooltip: 'Filters',
                 visible: true,
                 onClick: () {},

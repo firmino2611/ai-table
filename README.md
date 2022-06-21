@@ -1,4 +1,11 @@
 ### This is a simple package to create a table that looks like a list of items. Soon we will add more features in order to make it more useful to the community.
+## Coming Son
+
+- Layout version mobile
+- Checked options
+- Paginate component
+- Builder text field custom
+
 ## Features
 
 #### Rows
