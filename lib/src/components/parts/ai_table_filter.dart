@@ -22,5 +22,8 @@ class AIFilterHeaderSearch extends FilterHeaderSearch {
 
     /// Text of hint input
     super.placeholder,
+
+    /// Build a custom component for the lookup field
+    super.builder,
   });
 }

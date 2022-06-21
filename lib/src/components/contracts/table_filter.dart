@@ -31,9 +31,13 @@ abstract class FilterHeaderSearch {
   /// Text of hint input
   final String placeholder;
 
+  /// Build a custom component for the lookup field
+  final Widget Function()? builder;
+
   FilterHeaderSearch({
     this.onChange,
     this.placeholder = '',
+    this.builder,
   });
 }
 

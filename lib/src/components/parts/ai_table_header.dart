@@ -8,6 +8,9 @@ class AITableHeaderCell extends TableHeaderCell {
 
     /// Aligment of content cell
     super.align,
+
+    /// Control display in mobile versions
+    super.visibleMobile,
   });
 }
 

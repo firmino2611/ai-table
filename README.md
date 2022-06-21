@@ -1,12 +1,44 @@
-### This is a simple package to create a table that looks like a list of items. Soon we will add more features in order to make it more useful to the community.
-## Coming Son
+## For those who want to contribute:
+I'll leave a whole with the progress of new features for those who want to contribute to the package ;).
 
-- Layout version mobile
-- Checked options
-- Paginate component
-- Builder text field custom
+if you want to contribute any feature ideas, please create a pull request or leave an issue open with your idea.
+
+| Feature                         |     Status     |       Date | finished in |
+| ------------------------------- | :------------: | ---------: | ----------: |
+| Paginate component              | in development | 21-06-2022 |             |
+| Select line with checkbox       |    awaiting    |        --- |             |
+| Item quantity selector per page |    awaiting    |        --- |             |
+
+I'll also add an interactive example soon.
+
+### This is a simple package to create a table that looks like a list of items. Soon we will add more features in order to make it more useful to the community.
 
 ## Features
+
+#### Settings
+
+Some settings that will be applied to all table
+
+```dart
+TableSettings(
+    rowBackground: Colors.grey.shade100,
+    limitePerPage: 12,
+    showFilters: true,
+)
+```
+
+##### TableSettings
+
+```dart
+/// Control display filter
+final bool showFilters;
+
+/// Control limit items per page
+final int limitePerPage;
+
+/// Background colors rows
+final Color rowBackground;
+```
 
 #### Rows
 
@@ -67,12 +99,14 @@ Here you specify some definitions for the table header.
     background: Colors.grey.shade200,
     columns: [
         AITableHeaderCell(
+            visibleMobile: true,
             child: Text(
                 'ID',
                 style: TextStyle(fontWeight: FontWeight.bold),
             ),
         ),
         AITableHeaderCell(
+            visibleMobile: true,
             child: Text(
                 'NAME',
                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -113,6 +147,9 @@ final Widget child;
 
 /// Aligment of content cell
 final Alignment align;
+
+/// Control display in mobile versions
+final bool visibleMobile;
 ```
 
 #### Filter

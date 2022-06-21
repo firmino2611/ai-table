@@ -1,3 +1,4 @@
+import 'package:ai_table_list/src/components/contracts/table_cell_interface.dart';
 import 'package:ai_table_list/src/components/contracts/table_filter.dart';
 import 'package:ai_table_list/src/components/contracts/table_header_interface.dart';
 import 'package:ai_table_list/src/components/contracts/table_row_interface.dart';
@@ -41,7 +42,6 @@ class _AITableListState extends State<AITableList> {
     return Column(
       children: [
         // ======================= FILTER HEADER =========================== //
-        /// Component to add filter and others actions
         Visibility(
           visible: widget.settings?.showFilters ?? true,
           child: Container(
@@ -52,10 +52,16 @@ class _AITableListState extends State<AITableList> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Flexible(
-                  child: AITextField(
-                    placeholder: widget.filter?.search?.placeholder ?? '',
-                    onChange: widget.filter?.search?.onChange,
-                  ),
+                  child: widget.filter?.search?.builder != null
+                      ? widget.filter!.search!.builder!()
+                      : AITextField(
+                          placeholder: widget.filter?.search?.placeholder ?? '',
+                          onChange: widget.filter?.search?.onChange,
+                          sufixIcon: const Icon(
+                            Icons.search,
+                            color: AIColors.black,
+                          ),
+                        ),
                 ),
                 Visibility(
                   visible: widget.filter?.filterButton?.visible ?? true,
@@ -68,41 +74,53 @@ class _AITableListState extends State<AITableList> {
                   ),
                 ),
                 const Spacer(),
+                ..._validateShowActions,
               ],
             ),
           ),
         ),
-
-        // ====================== . FILTER HEADER =========================  //
-
         // =========================  HEADER ==============================  //
         Container(
           margin: const EdgeInsets.only(top: 10),
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
           decoration: Constants.boxDecoration(color: widget.header.background),
-          child: Row(
-            children: widget.header.columns.map<Widget>((head) {
-              return Expanded(
-                flex: 1,
-                child: Align(
-                  alignment: head.align,
-                  child: head.child,
-                ),
-              );
-            }).toList(),
-          ),
+          child: Row(children: _builderHeader),
         ),
-        // ========================= . HEADER  ============================  //
-
         // ==========================  ROWS ===============================  //
-        ..._builderRows,
-        // ========================== . ROWS  =============================  //
-
+        ..._builderRows.getRange(0, widget.settings?.limitePerPage ?? 10),
         // ====================== PAGINATE ================================= //
         // todo: coming son...
-        // ==================== . PAGINATE ================================= //
       ],
     );
+  }
+
+  get _validateShowActions {
+    if (widget.filter?.actions != null) {
+      return widget.filter!.actions;
+    }
+    return [];
+  }
+
+  get _builderHeader {
+    final headers = <Widget>[];
+
+    for (TableHeaderCell head in widget.header.columns) {
+      final widthScreen = MediaQuery.of(context).size.width;
+      final cell = Expanded(
+        flex: 1,
+        child: Align(
+          alignment: head.align,
+          child: head.child,
+        ),
+      );
+      if (widthScreen > 400) {
+        headers.add(cell);
+      } else if (head.visibleMobile) {
+        headers.add(cell);
+      }
+    }
+
+    return headers;
   }
 
   /// Validate content of button filters
@@ -125,6 +143,27 @@ class _AITableListState extends State<AITableList> {
   /// Generate rows of table
   List<Widget> get _builderRows {
     return widget.rows.map((row) {
+      final cells = <Widget>[];
+      final widthScreen = MediaQuery.of(context).size.width;
+
+      for (TableCellInterface cell in row.cells) {
+        final cellWidget = Expanded(
+          flex: 1,
+          child: Align(
+            alignment: cell.align,
+            child: cell.child,
+          ),
+        );
+
+        final head = widget.header.columns[row.cells.indexOf(cell)];
+
+        if (widthScreen > 400) {
+          cells.add(cellWidget);
+        } else if (head.visibleMobile) {
+          cells.add(cellWidget);
+        }
+      }
+
       return FocusableActionDetector(
         onShowHoverHighlight: (focus) {
           if (row.onHover != null) row.onHover!(widget.rows.indexOf(row));
@@ -136,17 +175,11 @@ class _AITableListState extends State<AITableList> {
           child: Container(
             margin: const EdgeInsets.only(top: 10),
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-            decoration: Constants.boxDecoration(),
+            decoration: Constants.boxDecoration(
+              color: widget.settings?.rowBackground,
+            ),
             child: Row(
-              children: row.cells.map((cell) {
-                return Expanded(
-                  flex: 1,
-                  child: Align(
-                    alignment: cell.align,
-                    child: cell.child,
-                  ),
-                );
-              }).toList(),
+              children: cells,
             ),
           ),
         ),
@@ -161,10 +194,14 @@ class TableSettings {
   final bool showFilters;
 
   /// Control limit items per page
-  final int limitePrePage;
+  final int limitePerPage;
+
+  /// Background colors rows
+  final Color rowBackground;
 
   TableSettings({
     this.showFilters = true,
-    this.limitePrePage = 10,
+    this.limitePerPage = 10,
+    this.rowBackground = AIColors.white,
   });
 }

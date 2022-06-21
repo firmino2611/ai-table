@@ -52,7 +52,7 @@ class AIIconButton extends StatelessWidget {
         width: iconSize != null ? 60 : null,
         height: iconSize != null ? 60 : null,
         padding: EdgeInsets.all(
-          shape == IconButtonShape.rounded ? 7.5 : 10,
+          shape == IconButtonShape.rounded ? 12 : 10,
         ),
         child: Icon(
           icon,

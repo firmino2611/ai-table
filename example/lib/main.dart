@@ -47,7 +47,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: AITableList(
-            settings: TableSettings(),
+            settings: TableSettings(
+              rowBackground: Colors.grey.shade100,
+              limitePerPage: 12,
+              showFilters: true,
+            ),
             filter: AITableFilter(
               filterButton: FilterButton(
                 color: Colors.red,
@@ -56,25 +60,38 @@ class _MyHomePageState extends State<MyHomePage> {
                 visible: true,
                 onClick: () {},
                 // builder: () {
-                //   return Icon(Icons.dangerous);
+                //   return Icon(Icons.search);
                 // },
               ),
               search: AIFilterHeaderSearch(
                 placeholder: 'Search..',
                 onChange: (val) {},
+                // builder: () {
+                //   return TextField();
+                // },
               ),
-              actions: [],
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text('Add item'),
+                  ),
+                ),
+              ],
             ),
             header: AITableHeader(
               background: Colors.grey.shade200,
               columns: [
                 AITableHeaderCell(
+                  visibleMobile: true,
                   child: Text(
                     'ID',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 AITableHeaderCell(
+                  visibleMobile: true,
                   child: Text(
                     'NAME',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -87,6 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 AITableHeaderCell(
+                  visibleMobile: true,
                   child: Text(
                     'ACTIONS',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -96,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             rows: List.generate(
-              10,
+              20,
               (index) => AITableRow(
                 onClick: (index) {},
                 cells: [

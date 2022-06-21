@@ -9,9 +9,13 @@ abstract class TableHeaderCell {
   /// Aligment of content cell
   final Alignment align;
 
+  /// Control display in mobile versions
+  final bool visibleMobile;
+
   TableHeaderCell({
     required this.child,
     this.align = Alignment.centerLeft,
+    this.visibleMobile = false,
   });
 }
 
