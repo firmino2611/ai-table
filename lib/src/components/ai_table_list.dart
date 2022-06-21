@@ -109,7 +109,7 @@ class _AITableListState extends State<AITableList> {
   get _validateContent {
     // if a builder custom be received
     if (widget.filter?.filterButton != null &&
-        widget.filter?.filterButton!.builder != null) {
+        widget.filter?.filterButton?.builder != null) {
       return widget.filter?.filterButton!.builder!();
     }
 
